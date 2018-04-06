@@ -1,0 +1,57 @@
+<html>
+
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+<div id="hood">
+
+<h2>Survey Form</h2>
+
+  <form action="/submit" method="post">
+  <p>Your Name: <input type='text' name='name'></p>
+  <p>Dojo Location:
+  <select name='loc'>
+    <option value="San Jose">San Jose</option>
+    <option value="Bellevue">Bellevue</option>
+    <option value="Washington DC">Washington DC</option>
+  </select>
+  </p>
+  <p>Favorite Language:
+  <select name='lang'>
+    <option value="Python">Python</option>
+    <option value="Java">Java</option>
+    <option value="Javascript">Javascript</option>
+  </select>
+  <br><br>
+  <p>Comment (optional):</p>
+	  
+  <textarea name='comment'></textarea>
+  <input type='submit' id='button' value='Button'>
+  </form>
+  <div id="log"></div>
+</div>
+<script>
+
+var pageCoords = []; 
+
+$("#hood").mousemove(function(e){
+  
+  pageCoords.push("( " + e.pageX + ", " + e.pageY + " )");
+
+  if (pageCoords.length > 20){
+
+    //$("#log").html(pageCoords);
+    $.post("tracking",{data:pageCoords});
+        
+  }
+   
+});
+
+
+
+</script>
+</body>
+
+
+</html>
